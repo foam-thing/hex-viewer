@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import { Item } from "./Item";
+import type { FC } from 'react';
+import { Item } from './Item';
 
 interface Props {
   set: number[];
@@ -25,7 +25,7 @@ export const Set: FC<Props> = (props) => {
   } = props;
 
   const items = set.map((byte, i) => {
-    let byteString = "--";
+    let byteString = '--';
 
     if (byte !== -1) {
       byteString = byte.toString(16);
@@ -51,8 +51,9 @@ export const Set: FC<Props> = (props) => {
 
   return (
     <ul
-      className={`setHex ${active ? "active" : ""}`}
+      className={`setHex ${active ? 'active' : ''}`}
       onMouseOver={() => activateSet(index)}
+      onFocus={() => {}}
       onMouseLeave={clearSet}
     >
       {items}

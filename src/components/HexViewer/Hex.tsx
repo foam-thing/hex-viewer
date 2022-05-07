@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import { Row } from "./Row";
+import type { FC } from 'react';
+import { Row } from './Row';
 
 interface Props {
   rows: number[][][];
@@ -9,7 +9,7 @@ interface Props {
 export const Hex: FC<Props> = (props) => {
   const { rows, bytesper } = props;
 
-  const pad = "000000";
+  const pad = '000000';
 
   const rowsNode = rows.map((row, i) => {
     let heading = `${i * bytesper}`;

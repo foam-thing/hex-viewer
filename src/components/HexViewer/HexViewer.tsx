@@ -1,7 +1,7 @@
-import { type FC } from "react";
-import { useHexViewer } from "./useHexViewer";
-import { Hex } from "./Hex";
-import { HexViewerProps } from "./type";
+import { type FC } from 'react';
+import { useHexViewer } from './useHexViewer';
+import { Hex } from './Hex';
+import { HexViewerProps } from './type';
 
 export const HexViewer: FC<HexViewerProps> = (props) => {
   const { children, noData } = props;

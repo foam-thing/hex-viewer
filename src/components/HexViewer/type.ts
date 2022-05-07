@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export type RawData = ArrayBuffer;
 export type BufferData = number[];
