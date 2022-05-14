@@ -1,3 +1,4 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
   env: {
     browser: true,
@@ -18,7 +19,7 @@ module.exports = {
   },
   plugins: ['import', 'react', 'jsx-a11y', '@typescript-eslint'],
   settings: {
-    'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
+    'import/extensions': ['.ts', '.tsx', '.d.ts'],
     'import/external-module-folders': [
       'node_modules',
       'node_modules/@types',
