@@ -1,1 +1,1 @@
-export * from "./HexViewer";
+export * from './HexViewer';
