@@ -31,11 +31,6 @@ jobs:
           command: |
             export PATH=/home/circleci/.local/share/pnpm/:$PATH
             pnpm install
-      - run:
-          name: 'Danger'
-          command: |
-            export PATH=/home/circleci/.local/share/pnpm/:$PATH
-            pnpm exec danger ci
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
