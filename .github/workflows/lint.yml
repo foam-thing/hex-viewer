@@ -1,20 +1,24 @@
-name: lint
+name: ESLint
 
 on:
+  push:
+    branches: [ main, development ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  lint:
-    # The type of runner that the job will run on
+  eslint:
+    name: Run eslint scanning
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    permissions:
+      contents: read
+      security-events: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
+
       - name: Get changed files
         run: |
           echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})"
