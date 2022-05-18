@@ -1,0 +1,24 @@
+name: lint
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  lint:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Get changed files
+        run: |
+          echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})"
+      - name: Debug
+        run: |
+          echo "${{ github.event.pull_request.base.sha }}"
+          echo "${{ github.sha }}"
