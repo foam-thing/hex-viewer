@@ -34,10 +34,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: |
-          echo $(pwd)
-          pnpm lint:all
+      # - name: Lint all files
+      #   run: |
+      #     echo $(pwd)
+      #     pnpm lint:all
 
       - name: Get changed files
         run: |
