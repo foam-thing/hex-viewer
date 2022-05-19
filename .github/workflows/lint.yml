@@ -1,0 +1,66 @@
+name: ESLint
+
+on:
+  push:
+    branches: [ main, development ]
+  pull_request_target:
+    branches: [ main ]
+
+jobs:
+  eslint:
+    name: Run eslint scanning
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: |
+          echo $(pwd)
+          pnpm lint:all
+
+      - name: Get changed files
+        run: |
+          export CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.sha }})
+          echo $CHANGED_FILES
+          # pnpm lint $CHANGED_FILES
+
+      # - name: Get changed files by action
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v20
+
+      # - name: List all changed files
+      #   run: |
+      #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+      #       echo "$file was changed"
+      #     done
+
+      - name: Debug
+        env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo "${{ github.event.pull_request.base.sha }}"
+          echo "${{ github.sha }}"
+          echo $EVENT_CONTEXT
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."

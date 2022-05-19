@@ -2,6 +2,8 @@ import './App.scss';
 import React, { useState } from 'react';
 import { HexViewer } from './components/HexViewer/HexViewer';
 
+const a = 1;
+
 function App() {
   const [file, setFile] = useState<File>();
   const [buffer, setBuffer] = useState<ArrayBuffer>();
