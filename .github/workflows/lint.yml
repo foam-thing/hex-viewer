@@ -3,16 +3,13 @@ name: ESLint
 on:
   push:
     branches: [ main, development ]
-  pull_request_target:
+  pull_request:
     branches: [ main ]
 
 jobs:
   eslint:
     name: Run eslint scanning
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16]
     permissions:
       contents: read
       security-events: write
@@ -28,16 +25,16 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: |
-          echo $(pwd)
-          pnpm lint:all
+      # - name: Lint all files
+      #   run: |
+      #     echo $(pwd)
+      #     pnpm lint:all
 
       - name: Get changed files
         run: |
