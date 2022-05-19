@@ -39,7 +39,7 @@ jobs:
 
       - name: Get changed files
         run: |
-          echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})"
+          echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.sha }})"
       - name: Debug
         run: |
           echo "${{ github.event.pull_request.base.sha }}"
