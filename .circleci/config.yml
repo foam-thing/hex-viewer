@@ -24,13 +24,15 @@ jobs:
             export PATH=/home/circleci/.local/share/pnpm/:$PATH
             pnpm -v
       - run:
-          name: 'Say hello'
-          command: 'echo Hello, World!'
-      - run:
           name: 'install deps'
           command: |
             export PATH=/home/circleci/.local/share/pnpm/:$PATH
             pnpm install
+      - run:
+          name: lint
+          command: |
+            export PATH=/home/circleci/.local/share/pnpm/:$PATH
+            pnpm lint:all
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
