@@ -34,14 +34,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: |
-          echo $(pwd)
-          pnpm lint:all
+      # - name: Lint
+      #   run: |
+      #     echo $(pwd)
+      #     pnpm lint:all
 
       - name: Get changed files
         run: |
           echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.sha }})"
+          pnpm lint $CHANGED_FILES
+
       - name: Debug
         run: |
           echo "${{ github.event.pull_request.base.sha }}"
