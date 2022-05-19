@@ -43,11 +43,14 @@ jobs:
         run: |
           export CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.sha }})
           echo $CHANGED_FILES
-          pnpm lint $CHANGED_FILES
+          # pnpm lint $CHANGED_FILES
 
       - name: Debug
+        env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
           echo "${{ github.event.pull_request.base.sha }}"
           echo "${{ github.sha }}"
+          echo $EVENT_CONTEXT
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
