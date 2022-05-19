@@ -11,9 +11,6 @@ jobs:
   eslint:
     name: Run eslint scanning
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16]
     permissions:
       contents: read
       security-events: write
@@ -29,7 +26,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'pnpm'
 
       - name: Install dependencies
